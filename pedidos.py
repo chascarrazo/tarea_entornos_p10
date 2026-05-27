@@ -3,10 +3,17 @@ from utilidades import pedir_numero
 
 pedidos = []
 
+def calcular_descuento_comercial(importe_total):
+    """Calcula el descuento aplicable según el importe."""
+    if importe_total > 100:
+        return importe_total * 0.10
+    elif importe_total > 50:
+        return importe_total * 0.05
+    return 0.0
 
 def menu_pedidos():
     fin = False
-    while fin == False:
+    while fin is False:
         print("\n--- PEDIDOS ---")
         print("1. Crear pedido")
         print("2. Listar pedidos")
@@ -76,10 +83,8 @@ def ver_pedidos():
             total = 0
             for l in p["lineas"]:
                 total = total + l["cantidad"] * l["precio"]
-            if total > 100:
-                total = total - total * 0.10
-            elif total > 50:
-                total = total - total * 0.05
+            descuento = calcular_descuento_comercial(total)
+            total = total - descuento
             print(str(pos + 1) + ". Cliente: " + p["cliente"]["nombre"] + " | Estado: " + p["estado"] + " | Total: " + str(round(total, 2)) + " €")
             pos = pos + 1
 
@@ -99,13 +104,8 @@ def calcular_total_desde_menu():
     for linea in p["lineas"]:
         suma = suma + linea["cantidad"] * linea["precio"]
 
-    # Reglas de descuento duplicadas a propósito
-    descuento = 0
-    if suma > 100:
-        descuento = suma * 0.10
-    elif suma > 50:
-        descuento = suma * 0.05
-
+    descuento = calcular_descuento_comercial(suma)
+    
     iva = (suma - descuento) * 0.21
     total = suma - descuento + iva
 
