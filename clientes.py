@@ -23,14 +23,19 @@ def menu_clientes():
             print("No existe esa opción")
 
 
+def validar_email(email):
+    """Comprueba si el email contiene una estructura básica."""
+    return "@" in email and "." in email
+
 def crear_cliente():
     nombre = input("Nombre: ")
     telefono = input("Teléfono: ")
     email = input("Email: ")
 
-    # Validación pobre a propósito para que se pueda mejorar
-    if nombre == "":
+    if nombre.strip() == "":
         print("El nombre no puede estar vacío")
+    elif not validar_email(email):
+        print("El email introducido no es válido")
     else:
         cliente = {"nombre": nombre, "telefono": telefono, "email": email}
         clientes.append(cliente)
