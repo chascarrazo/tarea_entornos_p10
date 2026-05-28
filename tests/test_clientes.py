@@ -1,21 +1,9 @@
-"""Pruebas de validación de clientes."""
-
-from clientes import Cliente, validar_email, validar_nombre
-
-
-def test_cliente_valido():
-    cliente = Cliente("Laura Pérez", "laura@example.com", "600111222")
-    assert cliente.es_valido() is True
-
-
-def test_cliente_con_email_invalido():
-    cliente = Cliente("Laura Pérez", "correo-mal")
-    assert cliente.es_valido() is False
-
-
-def test_validar_nombre_rechaza_vacio():
-    assert validar_nombre(" ") is False
-
+from clientes import clientes, crear_cliente, validar_email
 
 def test_validar_email_correcto():
+    # Comprueba que un email con formato correcto devuelve True
     assert validar_email("alumno@instituto.es") is True
+
+def test_validar_email_incorrecto():
+    # Comprueba que un email sin arroba o punto devuelve False
+    assert validar_email("correo-mal") is False

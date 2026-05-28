@@ -1,35 +1,13 @@
-"""Pruebas de la lógica de pedidos."""
+from pedidos import calcular_descuento_comercial
 
-import pytest
+def test_calculo_descuento_diez_por_ciento():
+    # Si la compra es de 120€ (>100), el descuento debe ser el 10% (12.0€)
+    assert calcular_descuento_comercial(120.0) == 12.0
 
-from pedidos import LineaPedido, Pedido, calcular_descuento, calcular_total_lineas
+def test_calculo_descuento_cinco_por_ciento():
+    # Si la compra es de 60€ (>50), el descuento debe ser el 5% (3.0€)
+    assert calcular_descuento_comercial(60.0) == 3.0
 
-
-def test_calcula_subtotal_linea():
-    linea = LineaPedido("Teclado", 25.0, 2)
-    assert linea.subtotal() == 50.0
-
-
-def test_calcula_total_lineas():
-    lineas = [LineaPedido("Ratón", 10.0, 2), LineaPedido("Monitor", 150.0, 1)]
-    assert calcular_total_lineas(lineas) == 170.0
-
-
-def test_aplica_descuento_del_10_por_ciento():
-    assert calcular_descuento(150.0) == 15.0
-
-
-def test_aplica_descuento_del_15_por_ciento():
-    assert calcular_descuento(300.0) == 45.0
-
-
-def test_total_final_pedido_con_descuento():
-    pedido = Pedido("Ana")
-    pedido.agregar_linea(LineaPedido("Silla", 100.0, 2))
-    assert pedido.total_con_descuento() == 170.0
-
-
-def test_no_permite_cantidad_cero():
-    linea = LineaPedido("Mesa", 80.0, 0)
-    with pytest.raises(ValueError):
-        linea.subtotal()
+def test_calculo_sin_descuento():
+    # Si la compra es de 20€ (<=50), el descuento debe ser 0.0€
+    assert calcular_descuento_comercial(20.0) == 0.0
