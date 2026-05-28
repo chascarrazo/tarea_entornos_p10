@@ -24,7 +24,14 @@ def menu_clientes():
 
 
 def validar_email(email):
-    """Comprueba si el email contiene una estructura básica."""
+    """Comprueba si una cadena de texto tiene la estructura básica de un correo electrónico.
+
+    Args:
+        email (str): Dirección de correo electrónico introducida por el usuario.
+
+    Returns:
+        bool: True si el texto contiene al menos un carácter '@' y un '.', False en caso contrario.
+    """
     return "@" in email and "." in email
 
 def crear_cliente():

@@ -4,7 +4,14 @@ from utilidades import pedir_numero
 pedidos = []
 
 def calcular_descuento_comercial(importe_total):
-    """Calcula el descuento aplicable según el importe."""
+    """Aplica las reglas de negocio para determinar el descuento por volumen de compra.
+
+    Args:
+        importe_total (float): Suma total de los productos del pedido antes de aplicar impuestos.
+
+    Returns:
+        float: Cantidad económica a deducir basada en los tramos (10% si supera 100€, 5% si supera 50€).
+    """
     if importe_total > 100:
         return importe_total * 0.10
     elif importe_total > 50:
@@ -34,6 +41,11 @@ def menu_pedidos():
 
 
 def nuevo_pedido():
+    """Gestiona el flujo guiado por consola para asociar un pedido a un cliente existente.
+
+    Pide de forma iterativa las líneas de productos (comprobando que el nombre, cantidad 
+    y precio unitario sean válidos) y añade el pedido final a la lista global.
+    """
     print("\nCREAR PEDIDO")
     if len(clientes) == 0:
         print("Primero debes crear un cliente")
