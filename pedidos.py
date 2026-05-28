@@ -10,7 +10,7 @@ def calcular_descuento_comercial(importe_total):
         importe_total (float): Suma total de los productos del pedido antes de aplicar impuestos.
 
     Returns:
-        float: Cantidad económica a deducir basada en los tramos (10% si supera 100€, 5% si supera 50€).
+        float: Cantidad económica a deducir  (10% si supera 100€, 5% si supera 50€).
     """
     if importe_total > 100:
         return importe_total * 0.10
@@ -43,7 +43,7 @@ def menu_pedidos():
 def nuevo_pedido():
     """Gestiona el flujo guiado por consola para asociar un pedido a un cliente existente.
 
-    Pide de forma iterativa las líneas de productos (comprobando que el nombre, cantidad 
+    Pide de forma iterativa las líneas de productos (comprobando que el nombre, cantidad
     y precio unitario sean válidos) y añade el pedido final a la lista global.
     """
     print("\nCREAR PEDIDO")
@@ -93,11 +93,11 @@ def ver_pedidos():
         pos = 0
         for p in pedidos:
             total = 0
-            for l in p["lineas"]:
-                total = total + l["cantidad"] * l["precio"]
+            for linea in p["lineas"]:
+                total = total + linea["cantidad"] * linea["precio"]
             descuento = calcular_descuento_comercial(total)
             total = total - descuento
-            print(str(pos + 1) + ". Cliente: " + p["cliente"]["nombre"] + " | Estado: " + p["estado"] + " | Total: " + str(round(total, 2)) + " €")
+            print(f'{pos + 1}. Cliente: {p["cliente"]["nombre"]} | Estado: {p["estado"]} | Total: {round(total, 2)} €')
             pos = pos + 1
 
 
@@ -117,7 +117,7 @@ def calcular_total_desde_menu():
         suma = suma + linea["cantidad"] * linea["precio"]
 
     descuento = calcular_descuento_comercial(suma)
-    
+
     iva = (suma - descuento) * 0.21
     total = suma - descuento + iva
 

@@ -3,7 +3,7 @@ clientes = []
 
 def menu_clientes():
     terminar = False
-    while terminar == False:
+    while not terminar:
         print("\n--- CLIENTES ---")
         print("1. Añadir cliente")
         print("2. Listar clientes")
@@ -68,5 +68,5 @@ def buscar_cliente():
         if texto.lower() in c["nombre"].lower() or texto in c["telefono"] or texto.lower() in c["email"].lower():
             print(c["nombre"] + " - " + c["telefono"] + " - " + c["email"])
             encontrado = True
-    if encontrado == False:
+    if not encontrado:
         print("No se encontraron clientes")
