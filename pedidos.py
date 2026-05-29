@@ -12,7 +12,9 @@ def calcular_descuento_comercial(importe_total):
     Returns:
         float: Cantidad económica a deducir  (10% si supera 100€, 5% si supera 50€).
     """
-    if importe_total > 100:
+    if importe_total > 300:
+        return importe_total * 0.15  # Linea nueva añadida
+    elif importe_total > 100:
         return importe_total * 0.10
     elif importe_total > 50:
         return importe_total * 0.05

@@ -11,3 +11,7 @@ def test_calculo_descuento_cinco_por_ciento():
 def test_calculo_sin_descuento():
     # Si la compra es de 20€ (<=50), el descuento debe ser 0.0€
     assert calcular_descuento_comercial(20.0) == 0.0
+
+def test_calculo_descuento_premium():
+    # Comprueba el nuevo tramo del 15% para compras de 400€
+    assert calcular_descuento_comercial(400.0) == 60.0
