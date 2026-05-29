@@ -65,7 +65,11 @@ def buscar_cliente():
     texto = input("Texto a buscar: ")
     encontrado = False
     for c in clientes:
-        if texto.lower() in c["nombre"].lower() or texto in c["telefono"] or texto.lower() in c["email"].lower():
+        coincide_nom = texto.lower() in c["nombre"].lower()
+        coincide_tel = texto in c["telefono"]
+        coincide_ema = texto.lower() in c["email"].lower()
+
+        if coincide_nom or coincide_tel or coincide_ema:
             print(c["nombre"] + " - " + c["telefono"] + " - " + c["email"])
             encontrado = True
     if not encontrado:

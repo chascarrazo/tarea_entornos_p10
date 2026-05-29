@@ -1,4 +1,5 @@
-from clientes import clientes, crear_cliente, validar_email
+from clientes import validar_email
+
 
 def test_validar_email_correcto():
     # Comprueba que un email con formato correcto devuelve True

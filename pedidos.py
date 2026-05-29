@@ -99,7 +99,10 @@ def ver_pedidos():
                 total = total + linea["cantidad"] * linea["precio"]
             descuento = calcular_descuento_comercial(total)
             total = total - descuento
-            print(f'{pos + 1}. Cliente: {p["cliente"]["nombre"]} | Estado: {p["estado"]} | Total: {round(total, 2)} €')
+            nom_cli = p["cliente"]["nombre"]
+            est = p["estado"]
+            tot_formateado = round(total, 2)
+            print(f"{pos + 1}. Cliente: {nom_cli} | Estado: {est} | Total: {tot_formateado} €")
             pos = pos + 1
 
 
